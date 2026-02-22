@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 
 class NextJSCheckoutIntegration {
     
-    private $nextjs_checkout_url = 'https://checkout.oudesouls.com';
+    private $nextjs_checkout_url = 'https://custom-checkout-kvdp75iyw-galzzqts-projects.vercel.app';
     
     public function __construct() {
         add_action('init', array($this, 'init'));
