@@ -43,11 +43,32 @@ export function CartProvider({ children }: { children: ReactNode }) {
     // Check for WordPress sync data in URL params
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
+
+      // Format 1: ?cart=[json array] — dikirim langsung dari filter WordPress
+      const cartData = urlParams.get('cart');
+      if (cartData) {
+        try {
+          const parsedItems = JSON.parse(decodeURIComponent(cartData));
+          if (Array.isArray(parsedItems)) {
+            syncFromWordPress({ items: parsedItems });
+          }
+          // Hapus query string dari URL agar terlihat bersih
+          const cleanUrl = window.location.pathname;
+          window.history.replaceState({}, '', cleanUrl);
+        } catch (error) {
+          console.error('Failed to parse ?cart= data:', error);
+        }
+        return; // Sudah dapat data, tidak perlu cek ?sync=
+      }
+
+      // Format 2: ?sync=[base64] — format lama
       const syncData = urlParams.get('sync');
       if (syncData) {
         try {
           const parsedData = JSON.parse(atob(syncData));
           syncFromWordPress(parsedData);
+          const cleanUrl = window.location.pathname;
+          window.history.replaceState({}, '', cleanUrl);
         } catch (error) {
           console.error('Failed to parse sync data:', error);
         }
