@@ -1,0 +1,39 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_WORDPRESS_SITE_URL": "@wordpress-site-url",
+    "NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_KEY": "@woo-consumer-key",
+    "NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_SECRET": "@woo-consumer-secret",
+    "MIDTRANS_SERVER_KEY": "@midtrans-server-key",
+    "MIDTRANS_CLIENT_KEY": "@midtrans-client-key",
+    "NEXT_PUBLIC_MIDTRANS_CLIENT_KEY": "@midtrans-client-key-public",
+    "NEXT_PUBLIC_BINDERBYTE_API_KEY": "@binderbyte-api-key",
+    "NEXT_PUBLIC_SITE_URL": "@site-url"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_WORDPRESS_SITE_URL": "@wordpress-site-url",
+      "NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_KEY": "@woo-consumer-key",
+      "NEXT_PUBLIC_WOOCOMMERCE_CONSUMER_SECRET": "@woo-consumer-secret",
+      "MIDTRANS_SERVER_KEY": "@midtrans-server-key",
+      "MIDTRANS_CLIENT_KEY": "@midtrans-client-key",
+      "NEXT_PUBLIC_MIDTRANS_CLIENT_KEY": "@midtrans-client-key-public",
+      "NEXT_PUBLIC_BINDERBYTE_API_KEY": "@binderbyte-api-key",
+      "NEXT_PUBLIC_SITE_URL": "@site-url"
+    }
+  },
+  "functions": {
+    "app/api/payment/route.ts": {
+      "runtime": "nodejs18.x"
+    },
+    "app/api/payment/notification/route.ts": {
+      "runtime": "nodejs18.x"
+    },
+    "app/api/sync-cart/route.ts": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
